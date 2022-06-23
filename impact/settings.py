@@ -36,6 +36,8 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1']
 
+INTERNAL_IPS = ['127.0.0.1']
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,7 +48,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'authentication'
+    'tailwind',
+    'django_browser_reload',
+
+    # Project apps
+    'accounts',
+    'theme',
 ]
 
 MIDDLEWARE = [
@@ -57,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = 'impact.urls'
@@ -114,9 +122,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Authentication
 # The model used by Django to represent a User.
-AUTH_USER_MODEL = 'authentication.User'
+AUTH_USER_MODEL = 'accounts.User'
 
-LOGIN_URL = '/auth/login'
+LOGIN_URL = 'login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -133,6 +143,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+TAILWIND_APP_NAME = 'theme'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

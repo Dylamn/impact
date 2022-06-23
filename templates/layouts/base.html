@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load tailwind_tags %}
+<html lang="fr">
+<head>
+  {% load static %}
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <title>Impact &#8212; {% block title %}{% endblock %}</title>
+  <!-- Favicon-->
+  <link rel="icon" type="image/png" href="{% static 'assets/favicon.png' %}"/>
+  <!-- Google fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+  {% block styles %}
+    {% tailwind_css %}
+  {% endblock %}
+</head>
+<body class="h-screen">
+{% block header %}
+  <!-- Navigation -->
+  {% include 'layouts/navbar.html' %}
+{% endblock %}
+
+{% block content %}{% endblock %}
+
+{% block footer %}
+  {% include 'layouts/footer.html' %}
+{% endblock %}
+
+{% block scripts %}
+  <script> {# Script for the responsive navbar #}
+  document.getElementById('nav-toggle').addEventListener('click', () =>
+    document.getElementById('nav-content').classList.toggle('hidden')
+  )
+  </script>
+
+  {% if user.is_authenticated %}
+    {% include 'scripts/auth-dropdown.html' %}
+  {% endif %}
+{% endblock %}
+</body>
+</html>

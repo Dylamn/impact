@@ -10,12 +10,20 @@ Class-based views
     1. Add an import:  from other_app.views import Home
     2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
 Including another URLconf
-    1. Import the include() function: from django.urls import include, path
+    1. Import the 'include()' function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+
+from impact import views
 
 urlpatterns = [
+    path("__reload__/", include("django_browser_reload.urls")),
+
+    path('', views.LandingView.as_view(), name='landing'),
+    path('terms/', views.TermsView.as_view(), name='terms'),
+
     path('admin/', admin.site.urls),
+    path('', include('accounts.urls')),
 ]
