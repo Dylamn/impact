@@ -12,28 +12,41 @@
 
       <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
         <p class="text-center text-3xl">Join Us.</p>
-        <form method="POST" class="flex flex-col pt-3 md:pt-8">
+        <form method="POST" {% url 'signup' %} class="flex flex-col pt-3 md:pt-8">
+          {% csrf_token %}
           <div class="flex flex-col pt-4">
-            <label for="name" class="text-lg">Name</label>
-            <input type="text" id="name" placeholder="John Smith"
+            <label for="username" class="text-lg">Username</label>
+            <input type="text" id="username" name="username" placeholder="Jsmith"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
+          </div>
+
+          <div class="flex flex-col pt-4">
+            <label for="first_name" class="text-lg">First Name</label>
+            <input type="text" id="first_name" name="first_name" placeholder="John"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
+          </div>
+
+          <div class="flex flex-col pt-4">
+            <label for="last_name" class="text-lg">Last Name</label>
+            <input type="text" id="last_name" name="last_name" placeholder="Smith"
                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
           </div>
 
           <div class="flex flex-col pt-4">
             <label for="email" class="text-lg">Email</label>
-            <input type="email" id="email" placeholder="your@email.com"
+            <input type="email" id="email" name="email" placeholder="your@email.com"
                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
           </div>
 
           <div class="flex flex-col pt-4">
             <label for="password" class="text-lg">Password</label>
-            <input type="password" id="password" placeholder="Password"
+            <input type="password" id="password" name="password1" placeholder="Password"
                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
           </div>
 
           <div class="flex flex-col pt-4">
             <label for="confirm-password" class="text-lg">Confirm Password</label>
-            <input type="password" id="confirm-password" placeholder="Password"
+            <input type="password" id="confirm-password" name="password2" placeholder="Password"
                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
           </div>
 
