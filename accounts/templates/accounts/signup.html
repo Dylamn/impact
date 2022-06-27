@@ -1,5 +1,7 @@
 {% extends 'layouts/base.html' %}
 
+{% block title %}Signup{% endblock %}
+
 {% block content %}
   <div class="w-full flex flex-wrap">
 
@@ -45,12 +47,13 @@
           </div>
 
           <div class="flex flex-col pt-4">
-            <label for="confirm-password" class="text-lg">Confirm Password</label>
-            <input type="password" id="confirm-password" name="password2" placeholder="Password"
+            <label for="confirm_password" class="text-lg">Confirm Password</label>
+            <input type="password" id="confirm_password" name="password2" placeholder="Password"
                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
           </div>
 
-          <button type="submit" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">Register
+          <button type="submit" id="signup"
+                  class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2mt-8">Signup
           </button>
 
         </form>
