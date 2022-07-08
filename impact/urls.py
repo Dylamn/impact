@@ -20,6 +20,7 @@ from django.urls import include, path
 from impact import views
 
 urlpatterns = [
+    # TODO: Remove this path for production
     path("__reload__/", include("django_browser_reload.urls")),
 ]
 

@@ -32,7 +32,6 @@ class Runner:
                 continue
 
             for metric_name in category['metrics'].keys():
-                print(metric_name)
                 if metric_name in self.rules_set:
                     self.results_rules[metric_name] = self.rules_set[metric_name]
 
