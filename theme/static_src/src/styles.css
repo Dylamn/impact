@@ -93,3 +93,21 @@
 .imp-browser-mockup > * {
     display: block;
 }
+
+/* Metrics page */
+
+.metrics-list > div:first-child {
+    border-top-width: 1px;
+}
+
+.note-a { /* good threshold */
+    background-color: #0F0;
+}
+
+.note-b { /* ok threshold */
+    background-color: #CCDD00;
+}
+
+.note-c { /* bad threshold */
+    background-color: #FF2222;
+}

@@ -1,7 +1,41 @@
 {% extends 'layouts/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load metric_filters %}
 
 {% block title %}Metrics Result{% endblock %}
 
 {% block content %}
-  <div>Here's the results!</div>
+  <div class="container mx-auto">
+    <div class="flex flex-col items-center">
+      <div class="text-3xl">Results</div>
+      {% for key, section  in results.items %}
+        <div class="w-2/3 flex items-center my-4 bg-gray-50 px-2 py-4 rounded">
+          <div class="w-1/4 text-3xl">{{ section.label }}</div>
+          <div class="w-3/4 metrics-list">
+            {% for metric_key, metric_value in section.metrics.items %}
+              {% with rule=applied_rules|get_item:metric_key %}
+                <div data-rule="{{ metric_key }}"
+                     class="rule flex flex-col border-b hover:bg-gray-100 hover:cursor-pointer">
+                  <div class="w-full flex space-x-4 px-1 items-center">
+                    <div class="p-4 my-1 note-{% get_note rule metric_value %}"></div>
+                    <div class="flex-1">{{ rule.title }}</div>
+                    <div class="text-center">{{ metric_value }}</div>
+                  </div>
+                  <div id="rule-message-{{ metric_key }}" class="hidden p-2">
+                    <p>{{ rule.message }}</p>
+                  </div>
+                </div>
+              {% endwith %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  {{ block.super }}
+  <script src="{% static 'js/metrics-collapse.js' %}"></script>
 {% endblock %}
