@@ -5,6 +5,8 @@ from .metrics_modules import (
     DOMMetrics,
     JavascriptMetrics,
     MetricModuleBase,
+    ServerConfigMetrics,
+    RequestsMetrics
 )
 
 
@@ -13,12 +15,13 @@ class PhantomasWrapper:
         DOMMetrics,
         CSSMetrics,
         JavascriptMetrics,
+        ServerConfigMetrics,
+        RequestsMetrics
     ]
 
     def __init__(self, url):
         self.phantomas = Phantomas(
             url=url,
-            modules=['headers', 'requestsStats']
         )
         self.results = {}
 
@@ -29,8 +32,8 @@ class PhantomasWrapper:
         for module in self.modules:
             if not issubclass(module, MetricModuleBase):
                 continue
-            mod_instance = module()
 
+            mod_instance = module()
             self.results |= mod_instance.get_metrics(phantomas_results)
 
         return self.results

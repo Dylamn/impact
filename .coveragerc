@@ -9,7 +9,6 @@ omit =
     */static/assets/*
 
 
-
 [report]
 # Regexes for lines to exclude from consideration
 exclude_lines =

@@ -9,6 +9,7 @@ from accounts.models import User
 from .helpers import create_user_data
 
 
+@pytest.mark.selenium
 @pytest.mark.usefixtures('use_driver')
 class SeleniumTests:
     def test_signup(self, live_server):
@@ -48,7 +49,7 @@ class SeleniumTests:
 
     def test_login_success(self, live_server):
         email = 'gally@example.com'
-        password = 'ido.Daisuke0+'
+        password = 'Password123-=+'
         User.objects.create_user('Gally', email, password)
 
         url = live_server.url + reverse('login')

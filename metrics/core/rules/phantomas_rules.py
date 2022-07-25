@@ -53,7 +53,7 @@ rules = {
     # |--------------
     # | CSS
     # |--------------
-    "inline_css": make_rule(
+    'inline_css': make_rule(
         title=_('Externalize inline style'),
         good_threshold=4,
         ok_threshold=8,
@@ -101,6 +101,100 @@ rules = {
             "Making an XMLHttpRequest with the async option set to false is"
             " deprecated due to the negative effect to performances. The browser's"
             " main thread needs to stop everything until the response is received."
+        )
+    ),
+
+    # |--------------
+    # | Server Config
+    # |--------------
+    'old_http_protocol': make_rule(
+        title=_('Old HTTP protocol'),
+        good_threshold=4,
+        ok_threshold=10,
+        bad_threshold=50,
+        msg=_(
+            "HTTP/2 is the latest version of the HTTP protocol. It is designed to"
+            " optimize load speed. Below 5 requests, the benefits of HTTP/2"
+            " are generally less significant."
+        )
+    ),
+    'old_tls_protocol': make_rule(
+        title=_('Old TLS protocol'),
+        good_threshold=0,
+        ok_threshold=5,
+        bad_threshold=10,
+        msg=_(
+            "Counts the number of domains that use TLS versions < 1.3. This is the "
+            "latest version since 2018 and it includes a faster \"handshake\" "
+            "technology. Also, The 1.0 and 1.1 versions are deprecated and are "
+            "considered as unsafe. You must atleast use the version 1.2."
+        )
+    ),
+    'caching_disabled': make_rule(
+        title=_('Caching disabled'),
+        good_threshold=2,
+        ok_threshold=15,
+        bad_threshold=30,
+        msg=_(
+            "Counts the number of responses that has been implicitly disabled"
+            " for cache (the `max-age` is set to 0)."
+        )
+    ),
+    'caching_not_specified': make_rule(
+        title=_('Caching not specified'),
+        good_threshold=5,
+        ok_threshold=10,
+        bad_threshold=20,
+        msg=_(
+            "When no caching is specified, each browser will handle it differently."
+            " Most of the time, it will automatically add a cache for you,"
+            " but not all the time. You'd better handle it yourself."
+        )
+    ),
+    # |--------------
+    # | Requests
+    # |--------------
+    'requests': make_rule(
+        title=_('Requests count'),
+        good_threshold=27,
+        ok_threshold=80,
+        bad_threshold=120,
+        msg=_(
+            "The total number of HTTP requests a site has to deal with can have"
+            " a massive impact on the overall loading speed as each request"
+            " slows down the page loading."
+        )
+    ),
+    'domains': make_rule(
+        title=_('Number of domains'),
+        good_threshold=3,
+        ok_threshold=12,
+        bad_threshold=30,
+        msg=_(
+            "For each domain met, the browser needs to make a DNS look-up,"
+            " which is slow. Avoid having to many different domains and the"
+            " page should render faster."
+        )
+    ),
+    'not_found': make_rule(
+        title=_('404 not found'),
+        good_threshold=0,
+        ok_threshold=0,
+        bad_threshold=1,
+        msg=_(
+            "404 errors are never cached, so each time a not found is reached, this"
+            "means that the server has been hit. Also no links must be broken"
+            " on your page."
+        )
+    ),
+    'below_the_fold_images': make_rule(
+        title=_('Below the fold images'),
+        good_threshold=1,
+        ok_threshold=12,
+        bad_threshold=30,
+        msg=_(
+            "This is the number of images displayed below the fold that could be"
+            " lazy-loaded. Lazily loading them can greatly improve the page speed."
         )
     ),
 }

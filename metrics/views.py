@@ -1,10 +1,8 @@
-import json
-
-from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.shortcuts import render
 from django.views import View
 
 from .core import Runner
+from .models import Report
 
 
 class MetricsView(View):
@@ -16,12 +14,21 @@ class MetricsView(View):
 
         runner = Runner(url)
 
-        results = runner.start()
-        applied_rules = runner.get_rules_from_results()
+        score, results = runner.start()
+
+        previous_report = Report.objects.filter(url=url).first()
+
+        #  max(created_at)
+        if previous_report is not None:
+            previous_report = previous_report.id
+
+        report = Report(
+            url=url, score=score, metrics=results,
+            previous_report=previous_report
+        )
 
         ctx = {
-            'results': results,
-            'applied_rules': applied_rules,
+            'report': report,
         }
 
         return render(request, 'metrics/results.html', ctx)

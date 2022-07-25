@@ -1,5 +1,6 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}Landing{% endblock %}
 
@@ -10,9 +11,9 @@
     md:justify-between md:items-center lg:px-48 md:px-12 px-4 bg-white">
     <div class="md:flex-1 md:mr-10">
       <h1 class="font-pt-serif text-5xl font-bold mb-7">
-        It's time to test
+        {% trans "It's time to test" %}
         <span class="imp-bg-underline1 bg-left-bottom bg-no-repeat pb-2 imp-bg-100%">
-          your website
+          {% trans "your website" %}
         </span>
       </h1>
       <p class="font-pt-serif font-normal mb-7">
@@ -23,7 +24,6 @@
         {% csrf_token %}
         <label for="page_url" class="hidden">page URL:</label>
         <input type="text" name="page_url" id="page_url" placeholder="https://www.yoursite.com"
-               value="https://kodyssee.com" {# TODO: Remove the `value` attribute #}
                class="w-full px-6 py-4 border-r-0 border-2 border-black"/>
         <button type="submit" class="border-2 w-24 border-black hover:text-white hover:bg-black duration-300">Test it!
         </button>

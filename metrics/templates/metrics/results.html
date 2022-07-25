@@ -8,22 +8,38 @@
 {% block content %}
   <div class="container mx-auto">
     <div class="flex flex-col items-center">
-      <div class="text-3xl">Results</div>
-      {% for key, section  in results.items %}
-        <div class="w-2/3 flex items-center my-4 bg-gray-50 px-2 py-4 rounded">
-          <div class="w-1/4 text-3xl">{{ section.label }}</div>
+      <div class="mt-8 flex flex-col items-center justify-center">
+        <p class="text-xl">Global score</p>
+        <div class="note-{{ report.get_note|lower }} w-full flex text-3xl mt-2 justify-center rounded-full p-2">
+          {{ report.get_note }}
+        </div>
+        <p>{{ report.score }} / 100</p>
+      </div>
+      {% for key, section  in report.metrics.items %}
+        <div class="w-2/3 flex flex-col lg:flex-row items-center my-4 bg-gray-50 px-2 py-4 rounded">
+          <div class="w-full lg:w-1/4 text-2xl xl:text-3xl flex mb-2 lg:mb-0 ml-2 space-x-4">
+            <p class="note-{{ section.note|lower }} rounded-full px-2 flex items-center justify-center">
+              {{ section.note }}
+            </p>
+            <p class="break-words">{{ section.label }}</p>
+          </div>
           <div class="w-3/4 metrics-list">
             {% for metric_key, metric_value in section.metrics.items %}
-              {% with rule=applied_rules|get_item:metric_key %}
+              {% with actual_rule=section.rules|get_item:metric_key %}
                 <div data-rule="{{ metric_key }}"
-                     class="rule flex flex-col border-b hover:bg-gray-100 hover:cursor-pointer">
+                     class="rule flex flex-col border-b hover:bg-gray hover:cursor-pointer">
                   <div class="w-full flex space-x-4 px-1 items-center">
-                    <div class="p-4 my-1 note-{% get_note rule metric_value %}"></div>
-                    <div class="flex-1">{{ rule.title }}</div>
+                    <div class="p-4 my-1 note-{% get_note actual_rule metric_value %}"></div>
+                    <div class="flex-1">{{ actual_rule.title }}</div>
                     <div class="text-center">{{ metric_value }}</div>
                   </div>
-                  <div id="rule-message-{{ metric_key }}" class="hidden p-2">
-                    <p>{{ rule.message }}</p>
+                  <div id="rule-message-{{ metric_key }}" class="hidden p-2 flex">
+                    <div class="w-1/4 flex items-center justify-center">
+                      <p>{{ actual_rule.score }} / 100</p>
+                    </div>
+                    <div>
+                      <p class="w-3/4">{{ actual_rule.message }}</p>
+                    </div>
                   </div>
                 </div>
               {% endwith %}

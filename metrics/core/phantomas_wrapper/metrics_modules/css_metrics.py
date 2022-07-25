@@ -8,5 +8,5 @@ class CSSMetrics(MetricModuleBase):
 
     def get_metrics(self, phantomas_results):
         return self.format_metrics({
-            'inline_css': phantomas_results.get_metric('nodesWithInlineCSS')
+            'inline_css': phantomas_results.get_metric('nodesWithInlineCSS'),
         })
