@@ -1,0 +1,15 @@
+<div class="flex justify-center items-center space-x-4 mt-6">
+  <abbr class="no-underline hover:text-white hover:bg-black rounded border" title="Test again">
+    <a href="{% url 'landing' %}"
+       class="flex justify-center items-center px-2 pb-2 text-5xl
+        cursor-pointer">&#11148;</a>
+  </abbr>
+
+  {% if report.previous_report %}
+    <abbr class="no-underline hover:text-white hover:bg-black rounded border" title="Compare with the last report">
+      <a href="{% url 'metrics:compare' report.pk report.previous_report_id %}"
+         class="flex justify-center items-center px-2 pb-2 text-5xl
+        cursor-pointer">&#8646;</a>
+    </abbr>
+  {% endif %}
+</div>

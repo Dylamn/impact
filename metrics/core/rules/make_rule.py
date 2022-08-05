@@ -16,6 +16,4 @@ def make_rule(
         "good_threshold": good_threshold,
         "ok_threshold": ok_threshold,
         "bad_threshold": bad_threshold,
-        "note": lambda x:
-        "A" if x <= good_threshold else "B" if x <= ok_threshold else "C"
     }

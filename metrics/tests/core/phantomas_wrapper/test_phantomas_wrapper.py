@@ -51,6 +51,24 @@ results_schema = Schema({
         'metrics': {
             'inline_css': int,
         }
+    },
+    'requests': {
+        'label': str,
+        'metrics': {
+            'requests': int,
+            'domains': int,
+            'not_found': int,
+            'below_the_fold_images': int,
+        }
+    },
+    'server_config': {
+        'label': str,
+        'metrics': {
+            'old_http_protocol': int,
+            'old_tls_protocol': int,
+            'caching_disabled': int,
+            'caching_not_specified': int,
+        }
     }
 })
 

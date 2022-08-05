@@ -1,0 +1,8 @@
+<a href="{% url 'metrics:results' report.pk section_key metric_key %}"
+   class="flex flex-col border-b hover:cursor-pointer hover:bg-gray-300">
+  <div class="w-full flex space-x-4 px-1 items-center">
+    <div class="p-4 my-1 note-{% get_note actual_rule metric_value %}"></div>
+    <div class="flex-1">{{ actual_rule.title }}</div>
+    <div class="text-center">{{ metric_value }}</div>
+  </div>
+</a>

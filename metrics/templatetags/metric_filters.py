@@ -11,6 +11,7 @@ def get_item(dictionary: dict, key) -> Any:
 
 @register.simple_tag
 def get_note(rule, value) -> str:
-    note = rule.get('note')(value)
+    good_threshold = rule.get('good_threshold')
+    ok_threshold = rule.get('ok_threshold')
 
-    return note.lower() if isinstance(note, str) else note
+    return "a" if value <= good_threshold else "b" if value <= ok_threshold else "c"

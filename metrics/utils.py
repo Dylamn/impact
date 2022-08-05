@@ -8,3 +8,19 @@ def calculate_note(score: int) -> str:
         note = 'C'
 
     return note
+
+
+def calculate_metric_score(
+        value: int, good_threshold: int, bad_threshold: int
+) -> int:
+    """Calculate the score for a given value on 100."""
+    score = round(
+        (bad_threshold - value) * 100 / (bad_threshold - good_threshold)
+    )
+
+    if score > 100:
+        score = 100
+    elif score < 0:
+        score = 0
+
+    return score

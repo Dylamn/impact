@@ -1,0 +1,8 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Compare reports{% endblock %}
+
+{% block content %}
+  {% include 'metrics/report.html' with report=actual_report %}
+  {% include 'metrics/report.html' with report=previous_report %}
+{% endblock %}

@@ -1,6 +1,6 @@
 from .phantomas_wrapper import PhantomasWrapper
 from .rules import phantomas_rules
-from metrics.utils import calculate_note
+from metrics.utils import calculate_note, calculate_metric_score
 
 
 class Runner:
@@ -52,7 +52,7 @@ class Runner:
                 # Append the rule (title, message, thresholds...)
                 self.results[key]['rules'].setdefault(metric_name, rule)
                 # Append the actual score of the metric
-                score = self.calculate_metric_score(
+                score = calculate_metric_score(
                     metric_value, rule['good_threshold'], rule['bad_threshold']
                 )
                 # dom/rules/dom_length/score
@@ -73,20 +73,3 @@ class Runner:
             n_sections += 1
 
         return round(total_score / n_sections)
-
-    @staticmethod
-    def calculate_metric_score(
-            value: int, good_threshold: int, bad_threshold: int
-    ) -> int:
-        """Calculate the score for a given value on 100."""
-        score = round(
-            (bad_threshold - value) * 100 / (bad_threshold - good_threshold)
-        )
-
-        if score > 100:
-            score = 100
-        elif score < 0:
-            score = 0
-
-        return score
-
