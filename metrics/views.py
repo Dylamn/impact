@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import SuspiciousOperation, PermissionDenied
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views.generic import View, ListView
+from phantomas import PhantomasError
 
 from .core import Runner
 from .models import Report
@@ -13,9 +14,17 @@ def run(request):
 
     runner = Runner(url)
 
-    score, results = runner.start()
+    try:
+        score, results = runner.start()
 
-    report = Report(url=url, score=score, metrics=results)
+        report = Report(url=url, score=score, metrics=results)
+    except PhantomasError as e:
+        if "URL" in e.args[0]:
+            error_code = "url"
+        else:
+            error_code = "network"
+
+        return redirect(f"{reverse('landing')}?error={error_code}")
 
     if request.user.is_authenticated:
         report.user = request.user
