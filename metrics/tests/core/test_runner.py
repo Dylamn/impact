@@ -8,8 +8,9 @@ def test_runner_initialization():
 
     runner = Runner(url)
 
-@pytest.skip("Need implementation")
+
 def test_runner_results():
+    pytest.skip("Need implementation")
     runner = Runner('https://www.example.com')
 
     assert runner.start() == {'success': True}
