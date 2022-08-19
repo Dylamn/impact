@@ -53,7 +53,6 @@ def compare_reports(request, actual_report_uuid, previous_report_uuid):
     context = {
         "actual_report": actual_report,
         "previous_report": previous_report,
-        "reports_to_compare": zip(actual_report, previous_report),
     }
 
     return render(request, 'metrics/compare.html', context)

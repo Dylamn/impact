@@ -1,8 +1,35 @@
 {% extends "layouts/base.html" %}
+{% load static %}
 
 {% block title %}Compare reports{% endblock %}
 
 {% block content %}
-  {% include 'metrics/report/report.html' with report=actual_report %}
-  {% include 'metrics/report/report.html' with report=previous_report %}
+  <div class="flex flex-col">
+    <div class="flex justify-center items-center space-x-4 my-6">
+      <abbr id="switcher" class="no-underline hover:text-white hover:bg-black rounded border"
+            title="Switch to the other report">
+        <span class="flex justify-center items-center px-2 pb-2 text-5xl
+        cursor-pointer">&#8646;</span>
+      </abbr>
+    </div>
+
+    <div id="actual_report">
+      <div class="flex justify-center text-xl">
+        <p>Report of {{ actual_report.created_at|date:"Y-m-d \a\t H:m" }} (Most recent)</p>
+      </div>
+      {% include 'metrics/report/report.html' with report=actual_report %}
+    </div>
+
+    <div id="previous_report" class="hidden">
+      <div class="flex justify-center text-xl">
+        <p>Report of {{ previous_report.created_at|date:"Y-m-d \a\t H:m" }} (Previous)</p>
+      </div>
+      {% include 'metrics/report/report.html' with report=previous_report %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  {{ block.super }}
+  <script src="{% static 'js/compare-reports.js' %}"></script>
 {% endblock %}
