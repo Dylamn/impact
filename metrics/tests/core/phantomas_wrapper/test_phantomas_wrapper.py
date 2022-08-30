@@ -6,19 +6,14 @@ from django.conf import settings
 from schema import Schema
 
 from metrics.core.phantomas_wrapper import PhantomasWrapper
-from metrics.tests.conftest import PhantomasResultsMock
-
-
-def mocked_results():
-    with open(settings.BASE_DIR / 'metrics/tests/samples/phantomas.json') as f:
-        yield PhantomasResultsMock('https://example.com/nowhere', json.load(f))
+from metrics.tests.conftest import mocked_results
 
 
 @pytest.fixture
 def patched_phantomas_wrapper() -> (PhantomasWrapper, mock.MagicMock):
     patcher = mock.patch(
         'metrics.core.phantomas_wrapper.phantomas_wrapper.Phantomas.run',
-        side_effect=mocked_results()
+        side_effect=mocked_results('https://www.example.com/phantomas/test')
     )
     mocked_run = patcher.start()
     url = 'https://www.example.com/phantomas/test'

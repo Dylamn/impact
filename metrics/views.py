@@ -35,7 +35,7 @@ def run(request):
 
     report.save()
 
-    return redirect(reverse('metrics:results', args=(report.pk,)))
+    return redirect(reverse('metrics:results', args=(report.pk,)), permanent=True)
 
 
 @login_required

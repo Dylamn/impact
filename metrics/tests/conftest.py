@@ -4,7 +4,7 @@ import pathlib
 import pytest
 
 
-class PhantomasResultsMock:
+class PhantomasResultsMock(object):
     def __init__(self, url, data):
         for key in ['generator', 'metrics', 'offenders']:
             assert data.get(key) is not None
@@ -39,3 +39,11 @@ def phantomas_results():
     with open(path_to_tests / 'samples/phantomas.json', 'r') as json_file:
         parsed_json = json.load(json_file)
         yield PhantomasResultsMock(url='https://www.example.com', data=parsed_json)
+
+
+def mocked_results(url):
+    """Return a phantomas `run` results"""
+    from django.conf import settings
+
+    with open(settings.BASE_DIR / 'metrics/tests/samples/phantomas.json') as f:
+        yield PhantomasResultsMock(url, json.load(f))
