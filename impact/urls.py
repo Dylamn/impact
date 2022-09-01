@@ -20,15 +20,10 @@ from django.urls import include, path
 from impact import views
 
 urlpatterns = [
-    # TODO: Remove this path for production
-    path("__reload__/", include("django_browser_reload.urls")),
-]
-
-urlpatterns += i18n_patterns(
     path('', views.LandingView.as_view(), name='landing'),
     path('terms/', views.TermsView.as_view(), name='terms'),
 
     path('admin/', admin.site.urls),
     path('', include('accounts.urls')),
     path('metrics/', include('metrics.urls'))
-)
+]
