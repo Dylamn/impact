@@ -3,11 +3,21 @@
 The goal of this project is to improve, at maximum as possible, the overall performance and evaluate the ecodesign 
 of any website.
 
+## Prerequisites
+You'll need to have a [node](https://nodejs.org/en/) version installed in order to use this project as its use 
+[tailwindcss](https://tailwindcss.com/) and [`phantomas`](https://github.com/macbre/phantomas). The latter (phantomas) 
+needs to be installed globally with npm like so:
+```shell
+$ npm install -g phantomas
+```
+
 ## Installation
 Copy the ``.env.example`` file and rename it ``.env``.
 You **must** fill the ``SECRET_KEY``, `DATABASE_URL` otherwise the application will not properly work.
 
 > Fill the ``SECRET_KEY`` with a long, random string.
+
+Activate your virtual environment if you want. (You can see more about it below)
 
 Then, in order to be able to run the app, you must install its dependencies which are
 listed in the ``requirements.txt`` file with pip:
@@ -31,9 +41,9 @@ For a more in-depth tutorial,
 check the [Virtual Environments and Packages](https://docs.python.org/3/tutorial/venv.html) documentation.
 
 So, lets create our virtual environment:
-1. Go to the ``purbeurre`` project directory:
+1. Go to the ``impact`` project directory:
     ```shell
-    $ cd path/to/purbeurre
+    $ cd path/to/impact
     ```
 2. Create your virtual environment:
     ```shell
