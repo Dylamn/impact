@@ -25,6 +25,13 @@ class PhantomasWrapper:
         )
         self.results = {}
 
+        # Monkey patch for Phantomas:
+        # Here we access a protected member of the instance, but we don't have choice
+        # since the wrapper is not up-to-date. The `reporter` option doesn't exist
+        # anymore in the most recents versions of phantomas.
+        if 'reporter' in self.phantomas._options:
+            self.phantomas._options.pop('reporter')
+
     def run(self):
         """Start Phantomas and gather metrics."""
         phantomas_results = self.phantomas.run()
