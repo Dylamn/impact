@@ -63,7 +63,6 @@ def test_report_specific_metric_view(client):
 
 @pytest.mark.django_db
 def test_compare_reports_require_login(client):
-    user = UserFactory()
     first_report = ReportFactory()
     second_report = ReportFactory()
     url = reverse('metrics:compare', args=(second_report.uuid, first_report.uuid))

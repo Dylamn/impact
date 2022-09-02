@@ -1,4 +1,3 @@
-import pytest
 from schema import Schema
 
 from metrics.core import Runner

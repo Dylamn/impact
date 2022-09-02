@@ -1,5 +1,3 @@
-from django.utils.translation import gettext_lazy as _
-
 from .make_rule import make_rule
 
 rules = {

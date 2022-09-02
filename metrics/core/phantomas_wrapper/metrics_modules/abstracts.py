@@ -25,10 +25,7 @@ class MetricModuleBase(metaclass=ABCMeta):
 
     @classmethod
     def __subclasshook__(cls, subclass):
-        return (
-                hasattr(subclass, 'get_metrics')
-                and callable(subclass.get_metrics)
-        )
+        return hasattr(subclass, 'get_metrics') and callable(subclass.get_metrics)
 
     @abstractmethod
     def get_metrics(self, phantomas_results: PhantomasResults):

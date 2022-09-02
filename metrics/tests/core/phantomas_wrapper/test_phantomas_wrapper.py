@@ -1,8 +1,6 @@
-import json
 from unittest import mock
 
 import pytest
-from django.conf import settings
 from schema import Schema
 
 from metrics.core.phantomas_wrapper import PhantomasWrapper

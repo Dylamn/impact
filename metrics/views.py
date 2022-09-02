@@ -43,8 +43,8 @@ def compare_reports(request, actual_report_uuid, previous_report_uuid):
     previous_report = Report.objects.get(pk=previous_report_uuid)
     actual_report = Report.objects.get(pk=actual_report_uuid)
 
-    if (request.user.id != previous_report.user_id
-            or request.user.id != actual_report.user_id):
+    if request.user.id != previous_report.user_id \
+            or request.user.id != actual_report.user_id:
         raise PermissionDenied('One of the reports are not owned by yourself.')
 
     if previous_report.url != actual_report.url:
