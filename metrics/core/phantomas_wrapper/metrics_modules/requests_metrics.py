@@ -7,7 +7,7 @@ class RequestsMetrics(MetricModuleBase):
         self.label = self.wrap_key.capitalize()
 
     def get_metrics(self, phantomas_results):
-        return self.format_metrics({
+        return self.wrap_metrics({
             'requests': phantomas_results.get_metric('requests'),
             'domains': phantomas_results.get_metric('domains'),
             'not_found': phantomas_results.get_metric('notFound'),

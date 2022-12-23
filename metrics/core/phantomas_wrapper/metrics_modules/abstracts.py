@@ -32,8 +32,8 @@ class MetricModuleBase(metaclass=ABCMeta):
         """Get and return the gathered metrics."""
         raise NotImplementedError
 
-    def format_metrics(self, metrics: dict):
-        """Format the values of the given dict by wrapping them `wrap_key` property"""
+    def wrap_metrics(self, metrics: dict):
+        """Wraps the values of the given dict with the `wrap_key` property value."""
         return {
             self.wrap_key: {
                 'label': self.label,

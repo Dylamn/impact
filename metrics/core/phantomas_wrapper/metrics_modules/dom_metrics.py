@@ -7,7 +7,7 @@ class DOMMetrics(MetricModuleBase):
         self.label = 'DOM'
 
     def get_metrics(self, phantomas_results):
-        return self.format_metrics({
+        return self.wrap_metrics({
             'dom_length': phantomas_results.get_metric('DOMelementsCount'),
             'dom_max_depth': phantomas_results.get_metric('DOMelementMaxDepth'),
             'dom_id_duplicated': phantomas_results.get_metric('DOMidDuplicated'),
