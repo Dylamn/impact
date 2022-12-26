@@ -1,17 +1,20 @@
 # Impact
 
-The goal of this project is to improve, at maximum as possible, the overall performance and evaluate the ecodesign 
+The goal of this project is to improve, at maximum as possible, the overall performance and evaluate the ecodesign
 of any website.
 
 ## Prerequisites
-You'll need to have a [node](https://nodejs.org/en/) version installed in order to use this project as its use 
-[tailwindcss](https://tailwindcss.com/) and [`phantomas`](https://github.com/macbre/phantomas). The latter (phantomas) 
+
+You'll need to have a [node](https://nodejs.org/en/) version installed in order to use this project as its use
+[tailwindcss](https://tailwindcss.com/) and [`phantomas`](https://github.com/macbre/phantomas). The latter (phantomas)
 needs to be installed globally with npm like so:
+
 ```shell
 $ npm install -g phantomas
 ```
 
 ## Installation
+
 Copy the ``.env.example`` file and rename it ``.env``.
 You **must** fill the ``SECRET_KEY``, `DATABASE_URL` otherwise the application will not properly work.
 
@@ -21,26 +24,30 @@ Activate your virtual environment if you want. (You can see more about it below)
 
 Then, in order to be able to run the app, you must install its dependencies which are
 listed in the ``requirements.txt`` file with pip:
+
 ````shell
 $ pip install -r requirements.txt
 ````
 
 Finally, you need to create the database which you specify in the ``.env`` file and migrate the tables:
+
 ````shell
 $ python manage.py migrate
 ````
 
 ### Virtual Environments
-Sometimes you want to keep libraries from polluting system installs 
+
+Sometimes you want to keep libraries from polluting system installs
 or use a different version of libraries than the ones installed on the system.  
-For this purpose, the standard library as of Python 3.3 comes with the "venv" 
+For this purpose, the standard library as of Python 3.3 comes with the "venv"
 module in order to help maintain these separate versions.
 These are others libraries which do the same but here we'll keep with the standard.
 
-For a more in-depth tutorial, 
+For a more in-depth tutorial,
 check the [Virtual Environments and Packages](https://docs.python.org/3/tutorial/venv.html) documentation.
 
 So, lets create our virtual environment:
+
 1. Go to the ``impact`` project directory:
     ```shell
     $ cd path/to/impact
@@ -53,7 +60,7 @@ So, lets create our virtual environment:
     ```shell
     $ source my_venv/bin/activate
     ```
-    On Windows it will be a little different:
+   On Windows it will be a little different:
     ```shell
     $ my_venv\Scripts\activate.bat
     ```
@@ -64,17 +71,22 @@ You now have finished setting up your virtual environment.
 > To exit the virtual environment, simply type the command ``deactivate`` in your terminal
 
 ## Run on localhost
-After the installation step, you can run the application through the `manage.py` but first you must build the css in 
+
+After the installation step, you can run the application through the `manage.py` but first you must build the css in
 order to have the styles applied:
+
 ````shell
 $ python manage.py tailwind install && python manage.py tailwind build
 ````
+
 Then you can start the development server by running the following command:
+
 ````shell
 $ python manage.py runserver
 ````
+
 > The ``runserver`` command is only for development purpose
 
-
 ### Building psycopg2 sources
+
 [Link to the documentation](https://www.psycopg.org/docs/install.html#install-from-source)

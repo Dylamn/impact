@@ -56,6 +56,9 @@ INSTALLED_APPS = [
 
     'tailwind',
 
+    # API
+    'metrics_api',
+
     # Project apps
     'accounts',
     'metrics',
