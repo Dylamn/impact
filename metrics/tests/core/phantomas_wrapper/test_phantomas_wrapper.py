@@ -1,6 +1,5 @@
 from unittest import mock
 
-import pytest
 from schema import Schema
 
 from metrics.core.phantomas_wrapper.metrics_modules import AssetsMetrics

@@ -1,10 +1,6 @@
-from django.urls import path, include
-from rest_framework import routers
-from django.views.decorators.csrf import csrf_exempt
-from . import views
+from django.urls import path
 
-# router = routers.DefaultRouter()
-# router.register(r'reports', views.GenerateReport)
+from . import views
 
 app_name = 'metrics_api'
 

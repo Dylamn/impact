@@ -1,7 +1,8 @@
 from pytest import fixture
 from selenium import webdriver
 
-from metrics.tests.conftest import patched_phantomas_wrapper
+# Imported fixtures will become available globally
+from metrics.tests.conftest import patched_phantomas_wrapper  # noqa: F401
 
 
 @fixture(params=['chrome'], scope='class')
