@@ -3,23 +3,7 @@ from unittest import mock
 import pytest
 from schema import Schema
 
-from metrics.core.phantomas_wrapper import PhantomasWrapper
-from metrics.tests.conftest import mocked_results
-
-
-@pytest.fixture
-def patched_phantomas_wrapper() -> (PhantomasWrapper, mock.MagicMock):
-    patcher = mock.patch(
-        'metrics.core.phantomas_wrapper.phantomas_wrapper.Phantomas.run',
-        side_effect=mocked_results('https://www.example.com/phantomas/test')
-    )
-    mocked_run = patcher.start()
-    url = 'https://www.example.com/phantomas/test'
-
-    yield PhantomasWrapper(url), mocked_run
-
-    patcher.stop()
-
+from metrics.core.phantomas_wrapper.metrics_modules import AssetsMetrics
 
 results_schema = Schema({
     'dom': {
@@ -96,3 +80,27 @@ def test_phantomas_wrapper_results(
     mocked_run.assert_called_once()
 
     results_schema.validate(results)
+
+
+def test_phantomas_wrapper_call_extra_modules(patched_phantomas_wrapper):
+    """Tests that extra metrics modules are called along the defaults."""
+    phantomas_wrapper, mocked_run = patched_phantomas_wrapper
+
+    patchers = []
+    for module in phantomas_wrapper.modules:
+        patcher = mock.patch.object(module, 'get_metrics')
+        patcher.start()
+        patchers.append(patcher)
+
+    with mock.patch.object(AssetsMetrics, 'get_metrics') as patched_method:
+        mocked_run.assert_not_called()
+        phantomas_wrapper.run(extra_modules=[AssetsMetrics])
+        mocked_run.assert_called_once()
+
+        patched_method.assert_called_once()
+
+    # Check that default modules are also called
+    for patcher in patchers:
+        mocked_method, _ = patcher.get_original()
+        mocked_method.assert_called_once()
+        patcher.stop()

@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'tailwind',
+    'rest_framework',
 
     # API
     'metrics_api',

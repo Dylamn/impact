@@ -1,3 +1,5 @@
+from typing import List
+
 from phantomas import Phantomas
 
 from .metrics_modules import (
@@ -6,7 +8,7 @@ from .metrics_modules import (
     JavascriptMetrics,
     MetricModuleBase,
     ServerConfigMetrics,
-    RequestsMetrics
+    RequestsMetrics,
 )
 
 
@@ -16,7 +18,7 @@ class PhantomasWrapper:
         CSSMetrics,
         JavascriptMetrics,
         ServerConfigMetrics,
-        RequestsMetrics
+        RequestsMetrics,
     ]
 
     def __init__(self, url):
@@ -32,11 +34,14 @@ class PhantomasWrapper:
         if 'reporter' in self.phantomas._options:
             self.phantomas._options.pop('reporter')
 
-    def run(self):
+    def run(self, extra_modules: List[MetricModuleBase] = None):
         """Start Phantomas and gather metrics."""
+        if extra_modules is None:
+            extra_modules = []
+
         phantomas_results = self.phantomas.run()
 
-        for module in self.modules:
+        for module in self.modules + extra_modules:
             if not issubclass(module, MetricModuleBase):
                 continue
 

@@ -1,6 +1,6 @@
+from metrics.utils import calculate_note, calculate_metric_score
 from .phantomas_wrapper import PhantomasWrapper
 from .rules import phantomas_rules
-from metrics.utils import calculate_note, calculate_metric_score
 
 
 class Runner:
@@ -19,8 +19,8 @@ class Runner:
         self.rules_set = custom_rules
         self.results = {}
 
-    def start(self):
-        self.results = PhantomasWrapper(self.url).run()
+    def start(self, *args, **kwargs):
+        self.results = PhantomasWrapper(self.url).run(*args, **kwargs)
 
         self._merge_rules_with_results()
         global_score = self.calculate_global_score()
@@ -40,9 +40,11 @@ class Runner:
             # Used to calculate the score of the section.
             # We'll append each metric score of the section.
             accumulated_scores = 0
+            unused_metric = 0
 
             for metric_name, metric_value in values['metrics'].items():
                 if metric_name not in self.rules_set:
+                    unused_metric += 1
                     continue
                 rule = self.rules_set[metric_name]
 
@@ -60,7 +62,9 @@ class Runner:
                 accumulated_scores += score
 
             # Calculate the score of a section (javascript, DOM, CSS, etc...).
-            section_score = round(accumulated_scores / len(values['metrics']))
+            section_score = round(
+                accumulated_scores / (len(values['metrics']) - unused_metric)
+            )
             self.results[key]['score'] = section_score
             self.results[key]['note'] = calculate_note(section_score)
 

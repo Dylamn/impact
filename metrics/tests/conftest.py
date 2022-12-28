@@ -1,7 +1,10 @@
 import json
 import pathlib
+from unittest import mock
 
 import pytest
+
+from metrics.core.phantomas_wrapper import PhantomasWrapper
 
 
 class PhantomasResultsMock(object):
@@ -47,3 +50,25 @@ def mocked_results(url):
 
     with open(settings.BASE_DIR / 'metrics/tests/samples/phantomas.json') as f:
         yield PhantomasResultsMock(url, json.load(f))
+
+
+@pytest.fixture()
+def patched_phantomas_wrapper(request) -> (PhantomasWrapper, mock.MagicMock):
+    """Fixture that patch the `run` method of the PhantomasWrapper class."""
+    url = 'https://www.example.com/phantomas/test'
+
+    if hasattr(request, 'param') and isinstance(request.param, dict):
+        url = request.param.get('url', url),
+        side_effect = request.param.get('side_effect')
+    else:
+        side_effect = mocked_results(url)
+
+    patcher = mock.patch(
+        'metrics.core.phantomas_wrapper.phantomas_wrapper.Phantomas.run',
+        side_effect=side_effect
+    )
+    mocked_run = patcher.start()
+
+    yield PhantomasWrapper(url), mocked_run
+
+    patcher.stop()

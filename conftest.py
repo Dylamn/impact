@@ -1,6 +1,8 @@
 from pytest import fixture
 from selenium import webdriver
 
+from metrics.tests.conftest import patched_phantomas_wrapper
+
 
 @fixture(params=['chrome'], scope='class')
 def use_driver(request):

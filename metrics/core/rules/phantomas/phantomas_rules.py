@@ -1,6 +1,11 @@
-from .make_rule import make_rule
+from metrics.core.rules.make_rule import make_rule
+from .assets_rules import rules as assets_rules
 
 rules = {
+    # |--------------
+    # | Assets / Weight
+    # |--------------
+    **assets_rules,
     # |--------------
     # | DOM Rules
     # |--------------
@@ -18,7 +23,6 @@ rules = {
         ok_threshold=16,
         bad_threshold=32,
         msg='A DOM with deep nested elements makes the CSS matching slower.'
-            ' It also slows down '
     ),
     "dom_id_duplicated": make_rule(
         title='Duplicated IDs',
@@ -45,9 +49,9 @@ rules = {
     # |--------------
     'inline_css': make_rule(
         title='Externalize inline style',
-        good_threshold=4,
-        ok_threshold=8,
-        bad_threshold=10,
+        good_threshold=20,
+        ok_threshold=40,
+        bad_threshold=70,
         msg='Make sure that the CSS is separate from the HTML code of'
             ' the page. If you include CSS in the body of the HTML file and'
             ' it is used for multiple pages, the code must be sent for each page'
