@@ -12,9 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
-from django.utils.translation import gettext_lazy as _
 import environ
-
+from django.utils.translation import gettext_lazy as _
 
 env = environ.Env(
     # set casting, default value
@@ -54,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'corsheaders',
     'tailwind',
     'rest_framework',
 
@@ -67,6 +67,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -170,3 +171,6 @@ TAILWIND_APP_NAME = 'theme'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ALLOWED_ORIGIN_REGEXES = env('ADDS_CORS_ALLOWED_ORIGIN_REGEXES').split('|') \
+    if env('ADDS_CORS_ALLOWED_ORIGIN_REGEXES') else []
