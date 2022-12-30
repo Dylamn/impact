@@ -1,5 +1,6 @@
-from django.http import HttpResponse
 from phantomas import PhantomasError
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -14,11 +15,12 @@ class GenerateReport(APIView):
 
     * Requires token authentication.
     """
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    http_method_names = ['post']
 
     def post(self, request, *args, **kwargs):
-        if request.method != 'POST':
-            return HttpResponse(status=405)
-
         url = request.POST.get('page_url', '')
 
         if url == '' or check_url(url) is False:

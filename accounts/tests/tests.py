@@ -1,4 +1,5 @@
 import pytest
+from django.db.models import ObjectDoesNotExist
 from django.shortcuts import reverse
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
@@ -6,7 +7,24 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
 from accounts.models import User
+from .factories import UserFactory
 from .helpers import create_user_data
+
+
+@pytest.mark.current
+@pytest.mark.django_db
+def test_create_user_generates_token():
+    """Test that a token is generated for a newly created user (post_save signal)."""
+    new_user = UserFactory.build()
+
+    with pytest.raises(ObjectDoesNotExist):
+        token = new_user.auth_token
+
+    new_user.save()
+
+    token = new_user.auth_token
+
+    assert token is not None and isinstance(token.key, str)
 
 
 @pytest.mark.selenium

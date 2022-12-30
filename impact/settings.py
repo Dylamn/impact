@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'tailwind',
     'rest_framework',
+    'rest_framework.authtoken',
 
     # API
     'metrics_api',
