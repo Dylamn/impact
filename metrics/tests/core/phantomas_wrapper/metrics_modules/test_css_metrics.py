@@ -15,6 +15,7 @@ class TestCSSMetrics:
         cls.schema = Schema({
             wrap_key: {
                 'label': label,
+                'weight': int,
                 'metrics': {
                     'inline_css': int,
                 }

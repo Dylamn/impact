@@ -7,7 +7,8 @@ from metrics.tests.conftest import mocked_results
 def test_runner_results(mocker, phantomas_results):
     """Test the results that the runner returns."""
     category_dict = {
-        'label': str, 'metrics': dict, 'rules': dict, 'score': int, 'note': str,
+        'label': str, 'metrics': dict, 'weight': int, 'rules': dict, 'score': int,
+        'note': str,
     }
     expected_schema = Schema({
         'dom': category_dict,

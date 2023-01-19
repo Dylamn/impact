@@ -15,6 +15,7 @@ class TestDOMMetrics:
         cls.schema = Schema({
             wrap_key: {
                 'label': label,
+                'weight': int,
                 'metrics': {
                     'dom_length': int,
                     'dom_max_depth': int,

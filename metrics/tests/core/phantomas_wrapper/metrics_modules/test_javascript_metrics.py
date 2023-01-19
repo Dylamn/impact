@@ -15,6 +15,7 @@ class TestJavascriptMetrics:
         cls.schema = Schema({
             wrap_key: {
                 'label': label,
+                'weight': int,
                 'metrics': {
                     'accesses_count': int,
                     'js_exec_duration': int,

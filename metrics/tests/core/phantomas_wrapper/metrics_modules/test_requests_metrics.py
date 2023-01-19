@@ -15,6 +15,7 @@ class TestRequestsMetrics:
         cls.schema = Schema({
             wrap_key: {
                 'label': label,
+                'weight': int,
                 'metrics': {
                     'requests': int,
                     'domains': int,

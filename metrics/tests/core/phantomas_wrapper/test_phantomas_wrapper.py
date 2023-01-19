@@ -7,6 +7,7 @@ from metrics.core.phantomas_wrapper.metrics_modules import AssetsMetrics
 results_schema = Schema({
     'dom': {
         'label': str,
+        'weight': int,
         'metrics': {
             'dom_length': int,
             'dom_max_depth': int,
@@ -16,6 +17,7 @@ results_schema = Schema({
     },
     'javascript': {
         'label': str,
+        'weight': int,
         'metrics': {
             'accesses_count': int,
             'js_exec_duration': int,
@@ -24,12 +26,14 @@ results_schema = Schema({
     },
     'css': {
         'label': str,
+        'weight': int,
         'metrics': {
             'inline_css': int,
         }
     },
     'requests': {
         'label': str,
+        'weight': int,
         'metrics': {
             'requests': int,
             'domains': int,
@@ -39,6 +43,7 @@ results_schema = Schema({
     },
     'server_config': {
         'label': str,
+        'weight': int,
         'metrics': {
             'old_http_protocol': int,
             'old_tls_protocol': int,

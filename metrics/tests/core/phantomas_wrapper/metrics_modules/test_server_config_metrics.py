@@ -15,6 +15,7 @@ class TestServerConfigMetrics:
         cls.schema = Schema({
             wrap_key: {
                 'label': label,
+                'weight': int,
                 'metrics': {
                     'old_http_protocol': int,
                     'old_tls_protocol': int,

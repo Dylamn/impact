@@ -13,7 +13,6 @@ expected_json = Schema({
     'message': str,
     'report': {
         'global_score': int,
-        'score_message': str,
         'data': dict
     }
 })
