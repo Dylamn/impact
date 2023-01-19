@@ -16,19 +16,19 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: impact/settings.py:154
 msgid "English"
-msgstr "Anglais"
+msgstr ""
 
 #: impact/settings.py:155
 msgid "French"
-msgstr "Français"
+msgstr ""
 
 #: metrics/core/rules/phantomas/assets_rules.py:7
 msgid "Content length (compressed page weight)"
-msgstr "Longueur du contenu (poids de page compressé)"
+msgstr ""
 
 #: metrics/core/rules/phantomas/assets_rules.py:12
 msgid ""
@@ -36,13 +36,10 @@ msgid ""
 "transferred in packets (bytes). The smallest is it, the faster a slow "
 "connection can load the page."
 msgstr ""
-"Le poids/la taille du contenu compressé de toutes les réponses, c'est-à-dire "
-"ce qui a été transféré en paquets (octets). Plus ce nombre est petit, plus "
-"une connexion lente peut charger la page."
 
 #: metrics/core/rules/phantomas/assets_rules.py:18
 msgid "Body size (final page weight)"
-msgstr "Poids total"
+msgstr ""
 
 #: metrics/core/rules/phantomas/assets_rules.py:23
 msgid ""
@@ -51,38 +48,28 @@ msgid ""
 "big enough for small connections that'll need some seconds to fully load the "
 "page."
 msgstr ""
-"Le poids de la page avec toutes les ressources décompressés (images, vidéos, "
-"etc...). Vous devez essayer de le rendre aussi petit que possible. En "
-"général, il ne doit pas dépasser 1 Mo, ce qui est déjà assez lourd pour les "
-"petites connexions qui auront besoin de quelques secondes pour charger "
-"complètement la page."
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:15
 msgid "DOM elements count"
-msgstr "Nombre d'éléments du DOM"
+msgstr ""
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:19
 msgid ""
 "A large DOM will increase memory usage, cause longer style calculations and "
 "produce layout reflows."
 msgstr ""
-"Un DOM volumineux augmentera l'utilisation de la mémoire, entraînera des "
-"calculs de style plus longs et produira des reflux de mise en page. produire "
-"des reflux de mise en page."
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:23
 msgid "DOM max depth"
-msgstr "Profondeur maximale du DOM"
+msgstr ""
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:27
 msgid "A DOM with deep nested elements makes the CSS matching slower."
 msgstr ""
-"Un DOM avec des éléments profondément imbriqués rend la correspondance CSS "
-"plus lente. Cela ralenti également les modifications en javaScript."
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:30
 msgid "Duplicated IDs"
-msgstr "ID dupliqués"
+msgstr ""
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:35
 msgid ""
@@ -91,17 +78,10 @@ msgid ""
 "point to a specific style declaration in a style sheet. It is also used by "
 "JavaScript to access and manipulate the  element with the specific id."
 msgstr ""
-"L'attribut id spécifie un identifiant unique pour un élément HTML. La valeur "
-"de l'attribut id doit être unique dans le document HTML. Il est "
-"principalement utilisé pour pointer vers une déclaration de style spécifique "
-"dans une feuille de style. Il est également utilisé par JavaScript pour "
-"accéder et manipuler l'élément avec l'id spécifique. Avoir des duplicatas "
-"peut poser des problèmes avec `getElementById` qui peut retourner le mauvais "
-"élément."
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:43
 msgid "Number of iframes"
-msgstr "Nombre d'iframes"
+msgstr ""
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:48
 msgid ""
@@ -109,13 +89,10 @@ msgid ""
 "main page, and the browser needs to create a new page context, which has a "
 "cost."
 msgstr ""
-"Les iframes sont des éléments HTML complexes. Ce sont des pages, tout comme "
-"la page principale, et le navigateur doit créer un nouveau contexte pour "
-"celles-ci, ce qui a un coût."
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:57
 msgid "Externalize inline style"
-msgstr "Externaliser le style en ligne"
+msgstr ""
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:62
 msgid ""
@@ -125,16 +102,10 @@ msgid ""
 "of data sent. However, if the CSS is in its own separate file, the browser "
 "can avoid requesting them again by storing it in its local cache."
 msgstr ""
-"Assurez-vous que le CSS est séparé du code HTML de la page. Si vous incluez "
-"le CSS dans le corps du fichier HTML et qu'il est utilisé pour plusieurs "
-"pages, le code doit être envoyé pour chaque page que l'utilisateur demande, "
-"ce qui augmente la quantité de données envoyées. Toutefois, si le CSS se "
-"trouve dans son propre fichier distinct, le navigateur peut éviter de le "
-"redemander à nouveau en le stockant dans le cache local."
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:74
 msgid "DOM access"
-msgstr "Accès au DOM"
+msgstr ""
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:79
 msgid ""
@@ -143,26 +114,20 @@ msgid ""
 "Try to generate as much as possible your page statically (from the server "
 "side)."
 msgstr ""
-"Estimation du nombre de fois où le JavaScript interagit avec le DOM (durant "
-"le chargement de la page). Plus votre code JavaScript accède au DOM, plus le "
-"chargement de la page sera lent. Essayez de générer autant que possible "
-"votre page de manière statique (côté serveur)."
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:87
 msgid "Script execution duration"
-msgstr "Durée d'exécution des scripts"
+msgstr ""
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:92
 msgid ""
 "This is the number of milliseconds (ms) spent by the browser on JavaScript "
 "execution during the page load."
 msgstr ""
-"Il s'agit du nombre de millisecondes (ms) consacrées par le navigateur à "
-"l'exécution de JavaScript pendant le chargement de la page."
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:97
 msgid "Synchronous AJAX requests"
-msgstr "Requêtes AJAX synchrones"
+msgstr ""
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:102
 msgid ""
@@ -170,14 +135,10 @@ msgid ""
 "due to the negative effect to performances. The browser's main thread needs "
 "to stop everything until the response is received."
 msgstr ""
-"La réalisation d'une requête XMLHttpRequest avec l'option `async` définie "
-"sur `false` est déprécié en raison de l'effet négatif sur les performances. "
-"Le thread principal du navigateur principal du navigateur doit tout arrêter "
-"jusqu'à ce que la réponse soit reçue."
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:112
 msgid "Old HTTP protocol"
-msgstr "Ancien protocole HTTP"
+msgstr ""
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:117
 msgid ""
@@ -185,16 +146,10 @@ msgid ""
 "optimize load speed. Below 5 requests, the benefits of HTTP/2 are generally "
 "less significant."
 msgstr ""
-"HTTP/2 est la dernière version majeure du protocole HTTP. Il est conçu pour "
-"optimiser la vitesse de chargement. En dessous de 5 requêtes, les avantages "
-"de HTTP/2 sont généralement moins importants mais au dessus de ce seuil, le "
-"fait que la version 2 soit un protocole multiplexé (gestion de plusieurs "
-"requêtes en parallèle) est un réel gain. Ce n'est d'ailleurs pas la seule "
-"amélioration qu'apporte cette version."
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:123
 msgid "Old TLS protocol"
-msgstr "Ancien protocole TLS"
+msgstr ""
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:128
 msgid ""
@@ -203,26 +158,20 @@ msgid ""
 "The 1.0 and 1.1 versions are deprecated and are considered as unsafe. You "
 "must atleast use the version 1.2."
 msgstr ""
-"Le nombre de domaines qui utilisent des versions TLS < 1.3. Il s'agit de la "
-"dernière version depuis 2018 qui inclut un \"handshake\" plus rapide. De "
-"plus, les versions 1.0 et 1.1 sont dépréciées et la minimum à utiliser est "
-"donc la 1.2."
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:136
 msgid "Caching disabled"
-msgstr "Mise en cache désactivée"
+msgstr ""
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:141
 msgid ""
 "Counts the number of responses that has been implicitly disabled for cache "
 "(the `max-age` is set to 0)."
 msgstr ""
-"Compte le nombre de réponses qui ont été implicitement désactivées pour le "
-"cache (la valeur de `max-age` étant fixé à 0)."
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:146
 msgid "Caching not specified"
-msgstr "Mise en cache non spécifiée"
+msgstr ""
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:151
 msgid ""
@@ -230,16 +179,10 @@ msgid ""
 "of the time, it will automatically add a cache for you, but not all the "
 "time. You'd better handle it yourself."
 msgstr ""
-"Chaque navigateur effectue un traitement propre à lui Lorsque aucune mise en "
-"cache n'est spécifiée. La plupart du temps, il ajoutera automatiquement en "
-"cache, mais pas tout le temps. Il est donc préférable de s'en occuper soi-"
-"même."
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:161
-#, fuzzy
-#| msgid "DOM elements count"
 msgid "Requests count"
-msgstr "Nombre de requêtes"
+msgstr ""
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:166
 msgid ""
@@ -247,85 +190,63 @@ msgid ""
 "impact on the overall loading speed as each request slows down the page "
 "loading."
 msgstr ""
-"Le nombre total de requêtes HTTP qu'un site doit traiter peut avoir un "
-"impact massif sur la vitesse de chargement globale car chaque requête "
-"ralentit le chargement de la page."
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:172
 msgid "Number of domains"
-msgstr "Nombre de domaines"
+msgstr ""
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:177
 msgid ""
 "For each domain met, the browser needs to make a DNS look-up, which is slow. "
 "Avoid having to many different domains and the page should render faster."
 msgstr ""
-"Pour chaque domaine rencontré, le navigateur doit effectuer une recherche "
-"DNS, ce qui est plutôt lent (entre 20-120ms). Évitez d'avoir trop de "
-"domaines différents la page devrait s'afficher plus rapidement. Cette action "
-"est par la suite mise en cache et n'impact donc réellement que le chargement "
-"initial de la page."
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:184
 msgid "404 not found"
-msgstr "Erreurs 404 (Not Found)"
+msgstr ""
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:189
 msgid ""
 "404 errors are never cached, so each time a not found is reached, thismeans "
 "that the server has been hit. Also no links must be broken on your page."
 msgstr ""
-"Les erreurs 404 ne sont jamais mises en cache, donc à chaque fois qu'une "
-"\"Not Found\" est reçue, cela signifie que le serveur a été sollicité. Votre "
-"page doit donc n'avoir aucun lien qui mène intentionnellement à une erreur "
-"404."
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:196
 msgid "Below the fold images"
-msgstr "Images sous la ligne de flottaison (Below the fold images)"
+msgstr ""
 
 #: metrics/core/rules/phantomas/phantomas_rules.py:201
 msgid ""
 "This is the number of images displayed below the fold that could be lazy-"
 "loaded. Lazily loading them can greatly improve the page speed."
 msgstr ""
-"C'est le nombre d'images chargées et affichées sous la ligne de flottaison "
-"(sous la partie visible de la fenêtre) qui pourraient être chargées "
-"paresseusement (lazy loading). Lazy loader celles-ci peut améliorer "
-"considérablement la vitesse de la page."
 
 #: metrics/templates/metrics/report-list.html:5
 msgid "My Reports"
-msgstr "Mes rapports"
+msgstr ""
 
 #: metrics/templates/metrics/report-list.html:27
 msgid "No reports were found."
-msgstr "Aucun rapport n'a été trouvé."
+msgstr ""
 
 #: metrics/templatetags/metric_tags.py:13
 msgid "We cannot etablish a network connection with the requested website."
 msgstr ""
-"Nous ne pouvons pas établir une connexion réseau avec le site web demandé."
 
 #: metrics/templatetags/metric_tags.py:17
 msgid ""
 "The URL that you requested is not available or malformed. Do not forget the "
 "`http(s)` prefix."
 msgstr ""
-"L'URL que vous avez demandée n'est pas disponible ou est malformée. "
-"N'oubliez pas le préfixe `http(s)`."
 
 #: metrics_api/views.py:54
 msgid "report was successfully generated"
-msgstr "Votre rapport a été généré avec succès"
+msgstr ""
 
 #: templates/impact/index.html:14
 msgid "It's time to test"
-msgstr "Il est temps de tester"
+msgstr ""
 
 #: templates/impact/index.html:16
 msgid "your website"
-msgstr "votre site"
-
-#~ msgid "Switch Language"
-#~ msgstr "Changer de langue"
+msgstr ""
