@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <nav class="flex justify-between items-center bg-black text-white flex-wrap px-6 py-4">
   <div>
     <a class="text-white no-underline" href="{% url 'landing' %}">
@@ -14,15 +16,15 @@
     </button>
   </div>
 
-  <div id="nav-content" class="hidden flex-grow w-full pt-6 lg:w-auto lg:flex lg:items-center lg:pt-0">
+  <div id="nav-content" class="hidden flex-grow w-full pt-6 lg:w-auto lg:flex lg:items-center lg:pt-0 lg:space-x-6">
     <ul class="list-reset lg:flex justify-end flex-1 items-center lg:space-x-4">
-{#      <li>#}
-{#        <a class="inline-block py-2 px-4 text-white hover:text-gray-200" href="#">Link 1</a>#}
-{#      </li>#}
+      {#      <li>#}
+      {#        <a class="inline-block py-2 px-4 text-white hover:text-gray-200" href="#">Link 1</a>#}
+      {#      </li>#}
 
-{#      <li>#}
-{#        <a class="inline-block text-white hover:text-gray-200 py-2 px-4" href="#">Link 2</a>#}
-{#      </li>#}
+      {#      <li>#}
+      {#        <a class="inline-block text-white hover:text-gray-200 py-2 px-4" href="#">Link 2</a>#}
+      {#      </li>#}
 
       {% if user.is_authenticated %}
         {% include 'layouts/auth/menu.html' %}
@@ -30,5 +32,21 @@
         {% include 'layouts/auth/buttons.html' %}
       {% endif %}
     </ul>
+    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+      <input name="next" type="hidden" value="{{ redirect_to }}">
+      <label>
+        <span class="sr-only">{% trans "Switch Language" %}</span>
+        <select name="language" class="rounded border-2 border-white" onchange="this.form.submit()">
+          {% get_current_language as LANGUAGE_CODE %}
+          {% get_available_languages as LANGUAGES %}
+          {% get_language_info_list for LANGUAGES as languages %}
+          {% for language in languages %}
+            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+              {{ language.name_local }} ({{ language.code }})
+            </option>
+          {% endfor %}
+        </select>
+      </label>
+    </form>
   </div>
 </nav>
