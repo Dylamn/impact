@@ -8,7 +8,7 @@ class ServerConfigMetrics(MetricModuleBase):
 
     def get_metrics(self, phantomas_results):
 
-        return self.wrap_metrics({
+        return self.format_metrics({
             'old_http_protocol': phantomas_results.get_metric('oldHttpProtocol'),
             'old_tls_protocol': phantomas_results.get_metric('oldTlsProtocol'),
             'caching_disabled': phantomas_results.get_metric('cachingDisabled'),

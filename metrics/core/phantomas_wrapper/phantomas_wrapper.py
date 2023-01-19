@@ -21,10 +21,12 @@ class PhantomasWrapper:
         RequestsMetrics,
     ]
 
-    def __init__(self, url):
+    def __init__(self, url, *args, **kwargs):
         self.phantomas = Phantomas(
             url=url,
+            **kwargs
         )
+
         self.results = {}
 
         # Monkey patch for Phantomas:

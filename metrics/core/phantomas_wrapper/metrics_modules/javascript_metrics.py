@@ -24,7 +24,7 @@ class JavascriptMetrics(MetricModuleBase):
         for metric in self.accesses_metrics:
             accesses_count += phantomas_results.get_metric(metric)
 
-        return self.wrap_metrics({
+        return self.format_metrics({
             'accesses_count': accesses_count,
             'js_exec_duration': phantomas_results.get_metric('scriptDuration'),
             'synchronous_ajax': phantomas_results.get_metric('synchronousXHR'),

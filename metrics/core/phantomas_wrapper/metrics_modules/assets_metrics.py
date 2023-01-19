@@ -3,11 +3,13 @@ from .abstracts import MetricModuleBase
 
 class AssetsMetrics(MetricModuleBase):
     def __init__(self):
+        self.weight = 4
         self.wrap_key = 'assets'
+        # TODO: Translate each label
         self.label = self.wrap_key.capitalize()
 
     def get_metrics(self, phantomas_results):
-        return self.wrap_metrics({
+        return self.format_metrics({
             'content_length': phantomas_results.get_metric('contentLength'),
             'body_size': phantomas_results.get_metric('bodySize'),
 

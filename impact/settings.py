@@ -144,6 +144,10 @@ LOGOUT_REDIRECT_URL = '/'
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
+LOCALE_PATHS = [
+    BASE_DIR / 'locale'
+]
+
 LANGUAGE_CODE = 'en'
 
 LANGUAGES = [
@@ -175,3 +179,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGIN_REGEXES = env('ADDS_CORS_ALLOWED_ORIGIN_REGEXES').split('|') \
     if env('ADDS_CORS_ALLOWED_ORIGIN_REGEXES') else []
+
+
+if env('APP_ENV') != 'development':
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+
+    SECURE_HSTS_PRELOAD = True
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_SECONDS = int(env('HSTS_SECONDS'))
+

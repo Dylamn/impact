@@ -3,11 +3,12 @@ from .abstracts import MetricModuleBase
 
 class RequestsMetrics(MetricModuleBase):
     def __init__(self):
+        self.weight = 2
         self.wrap_key = 'requests'
         self.label = self.wrap_key.capitalize()
 
     def get_metrics(self, phantomas_results):
-        return self.wrap_metrics({
+        return self.format_metrics({
             'requests': phantomas_results.get_metric('requests'),
             'domains': phantomas_results.get_metric('domains'),
             'not_found': phantomas_results.get_metric('notFound'),
