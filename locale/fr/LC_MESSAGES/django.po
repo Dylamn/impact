@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-19 16:42+0000\n"
+"POT-Creation-Date: 2023-01-19 20:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -315,7 +315,7 @@ msgstr ""
 "L'URL que vous avez demandée n'est pas disponible ou est malformée. "
 "N'oubliez pas le préfixe `http(s)`."
 
-#: metrics_api/views.py:54
+#: metrics_api/views.py:52
 msgid "report was successfully generated"
 msgstr "Votre rapport a été généré avec succès"
 
@@ -327,5 +327,6 @@ msgstr "Il est temps de tester"
 msgid "your website"
 msgstr "votre site"
 
-#~ msgid "Switch Language"
-#~ msgstr "Changer de langue"
+#: templates/layouts/navbar.html:38
+msgid "Switch Language"
+msgstr "Changer de langue"
