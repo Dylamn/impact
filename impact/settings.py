@@ -15,6 +15,8 @@ from pathlib import Path
 import environ
 from django.utils.translation import gettext_lazy as _
 
+from impact.loggers import LOGGERS
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
@@ -180,6 +182,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGIN_REGEXES = env('ADDS_CORS_ALLOWED_ORIGIN_REGEXES').split('|') \
     if env('ADDS_CORS_ALLOWED_ORIGIN_REGEXES') else []
 
+LOGGING = LOGGERS
 
 if env('APP_ENV') != 'development':
     CSRF_COOKIE_SECURE = True
@@ -188,4 +191,3 @@ if env('APP_ENV') != 'development':
     SECURE_HSTS_PRELOAD = True
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_SECONDS = int(env('HSTS_SECONDS'))
-

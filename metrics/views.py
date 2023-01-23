@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import SuspiciousOperation, PermissionDenied
@@ -7,6 +9,8 @@ from phantomas import PhantomasError
 
 from .core import Runner
 from .models import Report
+
+logger = logging.getLogger(__name__)
 
 
 def run(request):
@@ -19,6 +23,7 @@ def run(request):
 
         report = Report(url=url, score=score, metrics=results)
     except PhantomasError as e:
+        logger.warning("An error occurred when running Phantomas :\n %s", e.args[0])
         if "URL" in e.args[0]:
             error_code = "url"
         else:
